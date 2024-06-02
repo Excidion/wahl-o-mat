@@ -1,0 +1,71 @@
+text:
+  title: "Wahl-O-Mat Analyse"
+  intro: |
+    Beim Blick auf den diesjährigen [Wahl-O-Mat](https://www.wahl-o-mat.de/europawahl2024/app/main_app.html) fiel mir auf, dass viele Parteien mir vollkommen unbekannt sind.
+    So viele, dass ich keine Chance sehe bis zur Wahl alle Parteiprogramme zu lesen.
+    Zum Glück stehen auch die Antworten aller Parteien als Datensatz [zum Download](https://www.bpb.de/themen/wahl-o-mat/europa-2024/547160/download/) bereit.
+    Im Folgenden wollen wir uns diese Daten mal genauer anschauen.
+
+    Im [Archiv](https://www.bpb.de/themen/wahl-o-mat/45484/archiv/#page-Archiv) finden sich auch noch viel mehr Datensätze.
+    Der Fokus soll hier auf den letzten zwei *großen* Wahlen (Bundestag und EU-Parlament) liegen.
+    Daher kann für die folgenden Analysen jeweils der Datensatz ausgewechselt werden.
+    Die Beschreibungen beziehen sich aber in der Regel auf die Wahl für das EU-Parlament 2024.
+  heatmap0: |
+    Im ersten Schritt gilt es den Datensatz einmal zu sichten.
+    Der ganze Datensatz enthält alle Thesen, Positionen und sogar Begründungen im Fließtext.
+    Das alles darzustellen wird etwas zu viel.
+    
+    Für eine erste Übersicht stellen wir alle Thesen und die Positionen der Parteien als Heatmap dar.
+    In dieser Darstellung entspricht jede Spalte einer Partei und jede Reihe einer These.
+    Die Farbe jedes Punktes gibt dabei die Position an.
+    Dabei steht blau für Zustimmung, orange für Ablehnung und schwarz entspricht einer Enthaltung.
+  heatmap1: |
+    Für die Darstellung der Heatmap wurden außerdem Parteien und Thesen nach *Ähnlichkeit* sortiert.
+    Ganz losgelöst von tatsächlichen Inhatltichen Verwandschaften schaut der Algorithmus schlichtweg welche Parteien ähnlich abstimmen und zu welchen Thesen Parteien ähnlich abstimmen.
+    Das resultiert dann in Flächen im Plot die verhältnismäßig gleichmäßig eingefärbt sind.
+    
+    Wie durch (mathematische) Zauberhand ergibt sich außerdem eine Anordnung der Parteien, die dem klassischen *Links-Rechts* Spektrum nicht unähnlich ist.
+    Sicherlich mag der geneigte Poltikwisseschaftler über die Anordnung streiten.
+    Und je nach gewähltem Jahr sind *Links* und *Rechts* sind auf der Plot-Achse auch gerne mal vertauscht.
+    Es fällt aber auf, dass die Parteien, die man in den beiden Extremen des Spektrums vermuten würde, an entegegensetzten Enden des Plots zu finden sind.
+    Ich würde daher der Anordung nicht zu viel Gewicht geben, aber es ist ein interessanter Nebeneffekt.
+  
+  clusters: |
+    Wenn man sich wirklich für die Ähnlichkeit der Parteien interessiert bietet sich eine andere Darstellung an.
+    Für die folgenden *Kartendarstellung* wurden alle Antworten der Parteien in ein numerisches Format überführt:
+    Das heißt, eine Zustimmung wurde zu einer 1 übersetzt, Ablehnung zu -1 und Enthaltung zu 0.
+    
+    Wir erhalten also für jede Partei einen Vektor mit so vielen Dimensionen wie beantwortete Thesen.
+    So etwas ist für uns Menschen leider weder vorstellbar noch grafisch darstellbar.
+    Hier kommt [UMAP](https://umap-learn.readthedocs.io/en/latest/how_umap_works.html) zur Hilfe.
+    Mit dieser Technik zur Dimensionsreduktion können wir die Daten auf darstellbare 2 oder 3 Dimensionen herunterbrechen.
+    Dabei sollen möglichst wenige der Informationen, Strukturen und Muster verloren gehen.
+    Wen die Mathematik abschreckt - ein paar anschauliche und interaktive Beispiele finden sich [hier](https://duhaime.s3.amazonaws.com/apps/umap-zoo/index.html).
+    
+    Nach einer UMAP-Transformation können wir uns mit einer 2 (oder 3) Dimensionalen Karten einen Überblick über inhaltliche verwandschaften verschaffen.
+    Vielleicht reicht es schon aus in die Parteiprogramme der Parteien zu schauen, die räumlich nah an denen sind, die man in der Vergangeheit gewählt hat.
+    
+    Als Navigationshilfe wurden alle Partein die ins [aktuelle EU-Parlament](https://de.wikipedia.org/wiki/Liste_der_deutschen_Abgeordneten_zum_EU-Parlament_(2019%E2%80%932024)) gewählt wurden mit ihren Parteifarben markiert.
+    Alle anderen bleiben grau.
+
+
+datasets:
+  _defaults:
+    columns:
+      party: "Partei: Kurzbezeichnung"
+      topic: "These: Titel"
+      opinion: "Position: Position"
+    mapping:
+      opinion:
+        _default: 0
+        "stimme zu": 1
+        "neutral": 0
+        "stimme nicht zu": -1
+  2024 EU-Parlament:
+    file: data/interim/2024/Wahl-O-Mat Europa 2024_Datensatz.xlsx
+    kwargs:
+      sheet_name: Datensatz EU 2024
+  2021 Bundestag:
+    file: data/interim/2021/Wahl-O-Mat Bundestag 2021_Datensatz_v1.02.xlsx
+    kwargs:
+      sheet_name: Datensatz Bundestag 2021
