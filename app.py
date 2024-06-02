@@ -21,8 +21,9 @@ def main():
     )
     st.write(read_config_value("text", "heatmap1"))
     st.subheader("Parteienlandkarte")
-    st.write(read_config_value("text", "clusters"))
+    st.write(read_config_value("text", "clusters0"))
     plot_party_clusters(df)
+    st.write(read_config_value("text", "clusters1"))
 
 
 def plot_heatmap(df):
@@ -143,6 +144,7 @@ def _plot_party_clusters(_df, dimensions=2):
     fig.update_xaxes(tickvals=[], zeroline=False)
     fig.update_yaxes(tickvals=[], zeroline=False)
     fig.update_layout(showlegend=False)
+    fig.update_traces(marker=dict(line=dict(width=0.5, color="white")))
     return fig
 
 

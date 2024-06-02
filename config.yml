@@ -30,7 +30,7 @@ text:
     Es fällt aber auf, dass die Parteien, die man in den beiden Extremen des Spektrums vermuten würde, an entegegensetzten Enden des Plots zu finden sind.
     Ich würde daher der Anordung nicht zu viel Gewicht geben, aber es ist ein interessanter Nebeneffekt.
   
-  clusters: |
+  clusters0: |
     Wenn man sich wirklich für die Ähnlichkeit der Parteien interessiert bietet sich eine andere Darstellung an.
     Für die folgenden *Kartendarstellung* wurden alle Antworten der Parteien in ein numerisches Format überführt:
     Das heißt, eine Zustimmung wurde zu einer 1 übersetzt, Ablehnung zu -1 und Enthaltung zu 0.
@@ -42,6 +42,8 @@ text:
     Dabei sollen möglichst wenige der Informationen, Strukturen und Muster verloren gehen.
     Wen die Mathematik abschreckt - ein paar anschauliche und interaktive Beispiele finden sich [hier](https://duhaime.s3.amazonaws.com/apps/umap-zoo/index.html).
     
+
+  clusters1: |  
     Nach einer UMAP-Transformation können wir uns mit einer 2 (oder 3) Dimensionalen Karten einen Überblick über inhaltliche verwandschaften verschaffen.
     Vielleicht reicht es schon aus in die Parteiprogramme der Parteien zu schauen, die räumlich nah an denen sind, die man in der Vergangeheit gewählt hat.
     
