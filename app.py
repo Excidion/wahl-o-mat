@@ -10,7 +10,17 @@ import umap
 
 def main():
     title = read_config_value("text", "title")
-    st.set_page_config(page_title=title)
+    st.set_page_config(
+        page_title=title,
+        page_icon=":ballot_box_with_ballot:",
+        menu_items={
+            "Report a bug": "https://github.com/Excidion/wahl-o-mat/issues/new",
+            "About": """
+                + [Author](https://www.linkedin.com/in/cedricwilting/) on LinkedIn
+                + [Source Code](https://github.com/Excidion/wahl-o-mat) on GitHub
+            """,
+        },
+    )
     st.title(title)
     st.write(read_config_value("text", "intro"))
     election = st.selectbox("Wahl", get_dataset_names())
