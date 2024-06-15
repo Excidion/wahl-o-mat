@@ -53,7 +53,6 @@ def plot_heatmap(df):
             [1, "blue"],  # "rgb(27, 158, 119)"],
         ],
         center_values=False,  # show real data
-        # use manhattan distance (bc of binary votes)
         row_dist="cosine",
         col_dist="cosine",
         link_method="ward",
@@ -70,7 +69,7 @@ def plot_party_clusters(df):
         "displayModeBar": False,
     }
     dims = st.radio(
-        "Dimension der Karte", [2, 3], horizontal=True, format_func=lambda x: f"{x}D"
+        "Dimension der Karte", [3, 2], horizontal=True, format_func=lambda x: f"{x}D"
     )
     st.plotly_chart(
         _plot_party_clusters(df, dims), use_container_width=True, config=config
