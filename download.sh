@@ -1,3 +1,6 @@
+# bundestag 2025
+wget https://www.bpb.de/system/files/datei/Wahl-O-Mat_Bundestagswahl_2025_Datensatz_v1.01.zip -P ./data/raw
+unzip data/raw/Wahl-O-Mat_Bundestagswahl_2025_Datensatz_v1.01.zip -d ./data/interim/2025
 # european parliament 2024
 wget https://www.bpb.de/system/files/datei/Wahl-O-Mat_Europa_2024_Datensatz.zip -P ./data/raw
 unzip ./data/raw/Wahl-O-Mat_Europa_2024_Datensatz.zip -d ./data/interim/2024
