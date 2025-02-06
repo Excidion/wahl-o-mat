@@ -39,7 +39,7 @@ def main():
 def plot_heatmap(df):
     matrix = df.pivot(
         index="topic",
-        columns="party",
+        on="party",
         values="opinion",
         aggregate_function=None,  # raise error on duplicates
     )
@@ -90,7 +90,7 @@ def plot_party_clusters(df):
 def _plot_party_clusters(_df, dimensions=2):
     opinions = _df.pivot(
         index="party",
-        columns="topic",
+        on="topic",
         values="opinion",
         aggregate_function=None,  # raise error on duplicates
     )
