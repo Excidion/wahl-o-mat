@@ -1,15 +1,14 @@
 text:
   title: "Wahl-O-Mat Analyse"
   intro: |
-    Beim Blick auf den diesjährigen [Wahl-O-Mat](https://www.wahl-o-mat.de/europawahl2024/app/main_app.html) fiel mir auf, dass viele Parteien mir vollkommen unbekannt sind.
+    Beim Blick auf den diesjährigen [Wahl-O-Mat](https://www.wahl-o-mat.de/bundestagswahl2025/app/main_app.html) fiel mir auf, dass viele Parteien mir vollkommen unbekannt sind.
     So viele, dass ich keine Chance sehe bis zur Wahl alle Parteiprogramme zu lesen.
-    Zum Glück stehen auch die Antworten aller Parteien als Datensatz [zum Download](https://www.bpb.de/themen/wahl-o-mat/europa-2024/547160/download/) bereit.
+    Zum Glück stehen auch die Antworten aller Parteien als Datensatz [zum Download](https://www.bpb.de/themen/wahl-o-mat/bundestagswahl-2025/558463/download/) bereit.
     Im Folgenden wollen wir uns diese Daten mal genauer anschauen.
 
     Im [Archiv](https://www.bpb.de/themen/wahl-o-mat/45484/archiv/#page-Archiv) finden sich auch noch viel mehr Datensätze.
-    Der Fokus soll hier auf den letzten zwei *großen* Wahlen (Bundestag und EU-Parlament) liegen.
+    Der Fokus soll hier auf den letzten drei *großen* Wahlen (Bundestag und EU-Parlament) liegen.
     Daher kann für die folgenden Analysen jeweils der Datensatz ausgewechselt werden.
-    Die Beschreibungen beziehen sich aber in der Regel auf die Wahl für das EU-Parlament 2024.
   heatmap0: |
     Im ersten Schritt gilt es den Datensatz einmal zu sichten.
     Der ganze Datensatz enthält alle Thesen, Positionen und sogar Begründungen im Fließtext.
@@ -47,7 +46,7 @@ text:
     Nach einer UMAP-Transformation können wir uns mit einer 2 (oder 3) Dimensionalen Karten einen Überblick über inhaltliche verwandschaften verschaffen.
     Vielleicht reicht es schon aus in die Parteiprogramme der Parteien zu schauen, die räumlich nah an denen sind, die man in der Vergangeheit gewählt hat.
     
-    Als Navigationshilfe wurden alle Partein die ins [aktuelle EU-Parlament](https://de.wikipedia.org/wiki/Liste_der_deutschen_Abgeordneten_zum_EU-Parlament_(2019%E2%80%932024)) gewählt wurden mit ihren Parteifarben markiert.
+    Als Navigationshilfe wurden alle Partein die ins [aktuelle EU-Parlament](https://de.wikipedia.org/wiki/Liste_der_deutschen_Abgeordneten_zum_EU-Parlament_(2024%E2%80%932029)) gewählt wurden mit ihren Parteifarben markiert.
     Alle anderen bleiben grau.
 
 

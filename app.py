@@ -130,6 +130,10 @@ def _plot_party_clusters(_df, dimensions=2):
         "BÜNDNIS DEUTSCHLAND": "#a2bbf3",
         "FAMILIE": "#ff6600",
         "FREIE WÄHLER": "#F7A800",
+        "BSW": "#7D254F",
+        "PdF": "#F5A612",
+        "Tierschutzpartei": "#006D77",
+        "ÖDP": "#FF6400",
     }
     for party in parties:
         if party not in color_discrete_map:
