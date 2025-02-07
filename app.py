@@ -124,6 +124,7 @@ def _plot_party_clusters(_df, dimensions=2):
         "SPD": "#E3000F",
         "FDP": "#FFED00",
         "DIE LINKE": "#BE3075",
+        "Die Linke": "#BE3075",
         "Volt": "#562883",
         "Die PARTEI": "#b5152b",
         "BÜNDNIS DEUTSCHLAND": "#a2bbf3",
