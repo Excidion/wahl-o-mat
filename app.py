@@ -3,8 +3,6 @@ from plotly import express as px
 import yaml
 import streamlit as st
 from dash_bio import Clustergram
-from sklearn.preprocessing import RobustScaler
-from sklearn.pipeline import Pipeline
 import umap
 
 
@@ -46,8 +44,6 @@ def plot_heatmap(df):
     matrix = matrix.to_pandas()
     y = matrix.pop("topic")
     # remove all neutral parties and topics
-    matrix = matrix.loc[:, ~(matrix == 0).all(axis=0)]
-    matrix = matrix.loc[~(matrix == 0).all(axis=1)]
     # plot
     fig = Clustergram(
         data=matrix,
@@ -63,8 +59,8 @@ def plot_heatmap(df):
             [1, "blue"],  # "rgb(27, 158, 119)"],
         ],
         center_values=False,  # show real data
-        row_dist="cosine",
-        col_dist="cosine",
+        row_dist="euclidean",
+        col_dist="euclidean",
         link_method="ward",
     )
     # remove colorbar
@@ -96,19 +92,11 @@ def _plot_party_clusters(_df, dimensions=2):
     )
     opinions = opinions.to_pandas()
     parties = opinions.pop("party")
-    pipe = Pipeline(
-        [
-            ("scaler", RobustScaler()),
-            (
-                "umap",
-                umap.UMAP(
-                    n_components=dimensions,
-                    n_neighbors=3,
-                    random_state=42,
-                    metric="cosine",
-                ),
-            ),
-        ]
+    pipe = umap.UMAP(
+        n_components=dimensions,
+        n_neighbors=parties.nunique() - 1,  # go for global structure
+        random_state=42,
+        metric="euclidean",
     )
     embedding = pipe.fit_transform(X=opinions)
     opinions["x"] = embedding[:, 0]
