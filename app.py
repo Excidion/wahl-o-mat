@@ -25,7 +25,9 @@ def main():
     df = load_dataset(election)
     st.write(read_config_value("text", "heatmap0"))
     st.plotly_chart(
-        plot_heatmap(df), use_container_width=True, config={"displayModeBar": False}
+        plot_heatmap(df),
+        use_container_width=True,
+        config={"displayModeBar": False},
     )
     st.write(read_config_value("text", "heatmap1"))
     st.subheader("Parteienlandkarte")
@@ -82,7 +84,6 @@ def plot_party_clusters(df):
     )
 
 
-# @st.cache_data
 def _plot_party_clusters(_df, dimensions=2):
     opinions = _df.pivot(
         index="party",
@@ -99,10 +100,8 @@ def _plot_party_clusters(_df, dimensions=2):
         metric="euclidean",
     )
     embedding = pipe.fit_transform(X=opinions)
-    opinions["x"] = embedding[:, 0]
-    opinions["y"] = embedding[:, 1]
-    if dimensions == 3:
-        opinions["z"] = embedding[:, 2]
+    for index, dim in zip(range(dimensions), ["x", "y", "z"]):
+        opinions[dim] = embedding[:, index]
     opinions["party"] = parties
     color_discrete_map = {
         "CDU / CSU": "#151518",
@@ -127,6 +126,8 @@ def _plot_party_clusters(_df, dimensions=2):
         if party not in color_discrete_map:
             color_discrete_map[party] = "#696969"
     plot_args = dict(
+        x="x",
+        y="y",
         hover_name="party",
         labels={
             "x": "",
@@ -137,10 +138,10 @@ def _plot_party_clusters(_df, dimensions=2):
         color_discrete_map=color_discrete_map,
     )
     if dimensions == 2:
-        fig = px.scatter(opinions, x="x", y="y", **plot_args)
+        fig = px.scatter(opinions, **plot_args)
     elif dimensions == 3:
         plot_args["labels"]["z"] = ""
-        fig = px.scatter_3d(opinions, x="x", y="y", z="z", **plot_args)
+        fig = px.scatter_3d(opinions, z="z", **plot_args)
     else:
         raise ValueError("Parameter 'dimensions' has to be either 2 or 3.")
     fig.update_xaxes(tickvals=[], zeroline=False)
